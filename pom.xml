@@ -168,6 +168,11 @@
       <artifactId>lombok</artifactId>
       <version>1.16.18</version>
     </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+    </dependency>
     <!-- 自定义依赖结束 -->
     <dependency>
       <groupId>ognl</groupId>

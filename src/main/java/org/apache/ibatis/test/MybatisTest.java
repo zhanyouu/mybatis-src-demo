@@ -30,10 +30,11 @@ public class MybatisTest {
   public void Test() {
     UserInfo userInfo = mapper.selectUserInfoById(1);
     UserInfo userInfo2 = sqlSession.selectOne("org.apache.ibatis.test.mapper.UserInfoMapper.selectUserInfoById", 1);
-    System.out.println(userInfo==userInfo2);
+    System.out.println(userInfo == userInfo2);
   }
+
   @Test
-  public void Test2(){
+  public void Test2() {
     UserInfo userInfo = mapper.selectUserInfoById2("user_info", 1);
     System.out.println(userInfo);
   }

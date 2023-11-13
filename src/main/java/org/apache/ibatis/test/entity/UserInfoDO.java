@@ -3,7 +3,7 @@ package org.apache.ibatis.test.entity;
 import lombok.Data;
 
 @Data
-public class UserInfo {
+public class UserInfoDO {
 
   private Integer id;
 
@@ -13,7 +13,7 @@ public class UserInfo {
 
   @Override
   public String toString() {
-    return "UserInfo{" +
+    return "UserInfoDO{" +
       "id=" + id +
       ", name='" + name + '\'' +
       ", age='" + age + '\'' +

@@ -34,7 +34,7 @@
     </environment>
   </environments>
   <mappers>
-<!--    <mapper resource="mapper/UserInfoMapper.xml"/>-->
+    <mapper resource="mapper/BlogMapper.xml"/>
     <package name="org.apache.ibatis.test.mapper"/>
   </mappers>
 </configuration>

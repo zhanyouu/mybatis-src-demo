@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.apache.ibatis.test.mapper.BlogMapper">
+  <resultMap id="blogMap" type="org.apache.ibatis.test.domain.Blog" autoMapping="false">
+    <id column="id" property="id"></id>
+    <result column="title" property="title"></result>
+    <result column="body" property="body"></result>
+    <association column="author_id" property="author" select="selectAuthById"></association>
+    <association column="id" property="comments" select="selectCommentById"></association>
+  </resultMap>
+  <resultMap id="commentMap" type="org.apache.ibatis.test.domain.Comment" autoMapping="false">
+    <result column="blog_id" property="blogId"></result>
+    <result column="name" property="name"></result>
+    <result column="comment" property="comment"></result>
+  </resultMap>
+  <select id="selectBlogById" resultMap="blogMap">
+    select * from blog where id = #{id}
+  </select>
+  <select id="selectAuthById" resultType="org.apache.ibatis.test.domain.Author">
+    select *from author where id = #{author_id}
+  </select>
+  <select id="selectCommentById" resultMap="commentMap">
+    select *from comment where blog_id = #{blog_id}
+  </select>
+</mapper>

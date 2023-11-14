@@ -99,8 +99,9 @@ public class CachingExecutor implements Executor {
     Cache cache = ms.getCache();
     //如果缓存不为空，从二级缓存中获取数据
     if (cache != null) {
-      //判断是否需要清理缓存
+      //flushCache 判断是否需要清理缓存
       flushCacheIfRequired(ms);
+      //useCache 是否启用二级缓存
       if (ms.isUseCache() && resultHandler == null) {
         ensureNoOutParams(ms, boundSql);
         @SuppressWarnings("unchecked")

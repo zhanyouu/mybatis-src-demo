@@ -145,6 +145,8 @@ public abstract class BaseExecutor implements Executor {
     if (closed) {
       throw new ExecutorException("Executor was closed.");
     }
+    //判断是否需要清除一级缓存，涉及到子查询不可以关闭一级缓存，queryStack！=0
+    //queryStack+缓存延迟加载 可以解决嵌套子查询中的循环依赖问题
     if (queryStack == 0 && ms.isFlushCacheRequired()) {
       clearLocalCache();
     }
@@ -160,12 +162,14 @@ public abstract class BaseExecutor implements Executor {
     } finally {
       queryStack--;
     }
+    //延迟加载缓存
     if (queryStack == 0) {
       for (DeferredLoad deferredLoad : deferredLoads) {
         deferredLoad.load();
       }
       // issue #601
       deferredLoads.clear();
+      //STATEMENT 清理一级缓存
       if (configuration.getLocalCacheScope() == LocalCacheScope.STATEMENT) {
         // issue #482
         clearLocalCache();
@@ -331,7 +335,7 @@ public abstract class BaseExecutor implements Executor {
   private <E> List<E> queryFromDatabase(MappedStatement ms, Object parameter, RowBounds rowBounds,
       ResultHandler resultHandler, CacheKey key, BoundSql boundSql) throws SQLException {
     List<E> list;
-    //设置缓存占位符，解决自查询中涉及到的循环依赖问题
+    //设置缓存占位符，解决子查询中涉及到的循环依赖问题
     localCache.putObject(key, EXECUTION_PLACEHOLDER);
     try {
       list = doQuery(ms, parameter, rowBounds, resultHandler, boundSql);

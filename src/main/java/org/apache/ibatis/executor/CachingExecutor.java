@@ -97,7 +97,9 @@ public class CachingExecutor implements Executor {
   public <E> List<E> query(MappedStatement ms, Object parameterObject, RowBounds rowBounds, ResultHandler resultHandler,
       CacheKey key, BoundSql boundSql) throws SQLException {
     Cache cache = ms.getCache();
+    //如果缓存不为空，从二级缓存中获取数据
     if (cache != null) {
+      //判断是否需要清理缓存
       flushCacheIfRequired(ms);
       if (ms.isUseCache() && resultHandler == null) {
         ensureNoOutParams(ms, boundSql);

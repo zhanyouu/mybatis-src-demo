@@ -426,6 +426,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
 
   private Object getRowValue(ResultSetWrapper rsw, ResultMap resultMap, String columnPrefix) throws SQLException {
     final ResultLoaderMap lazyLoader = new ResultLoaderMap();
+    //创建结果集对象
     Object rowValue = createResultObject(rsw, resultMap, lazyLoader, columnPrefix);
     //判断如果不是String,Integer等简单类型，需要额外处理
     if (rowValue != null && !hasTypeHandlerForResultObject(rsw, resultMap.getType())) {
@@ -701,6 +702,7 @@ public class DefaultResultSetHandler implements ResultSetHandler {
     if (hasTypeHandlerForResultObject(rsw, resultType)) {
       return createPrimitiveResultObject(rsw, resultMap, columnPrefix);
     }
+    //如果有构造函数
     if (!constructorMappings.isEmpty()) {
       return createParameterizedResultObject(rsw, resultType, constructorMappings, constructorArgTypes, constructorArgs,
           columnPrefix);

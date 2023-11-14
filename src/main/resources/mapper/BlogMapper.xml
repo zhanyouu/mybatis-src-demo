@@ -24,4 +24,7 @@
   <select id="selectCommentById" resultMap="commentMap">
     select *from comment where blog_id = #{blog_id}
   </select>
+  <select id="selectCommentById2" resultType="org.apache.ibatis.test.domain.Comment">
+    select *from comment where blog_id = #{blog_id}
+  </select>
 </mapper>

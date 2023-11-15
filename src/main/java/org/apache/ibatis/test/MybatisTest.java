@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.test.domain.Author;
 import org.apache.ibatis.test.domain.Blog;
+import org.apache.ibatis.test.domain.Comment;
 import org.apache.ibatis.test.entity.BlogDO;
 import org.apache.ibatis.test.entity.UserInfoDO;
 import org.apache.ibatis.test.mapper.UserInfoMapper;
@@ -49,8 +50,8 @@ public class MybatisTest {
   }
   @Test
   public void commentTest(){
-    List<Blog> blog = sqlSession.selectList("org.apache.ibatis.test.mapper.BlogMapper.selectCommentById",1);
-    System.out.println(blog);
+    List<Comment> comments = sqlSession.selectList("org.apache.ibatis.test.mapper.BlogMapper.selectCommentById",1);
+    System.out.println(comments);
   }
 
 }

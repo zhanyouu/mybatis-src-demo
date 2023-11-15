@@ -59,6 +59,8 @@ public class SimpleExecutor extends BaseExecutor {
     Statement stmt = null;
     try {
       Configuration configuration = ms.getConfiguration();
+      //RoutingStatementHandler里面装饰了PreparedStatementHandler，StatementHandler里面封装了sql的执行方法
+      //StatementHandler里面封装了defaultResultSetHandler
       StatementHandler handler = configuration.newStatementHandler(wrapper, ms, parameter, rowBounds, resultHandler,
           boundSql);
       stmt = prepareStatement(handler, ms.getStatementLog());

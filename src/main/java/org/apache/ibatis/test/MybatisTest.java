@@ -49,7 +49,7 @@ public class MybatisTest {
   }
   @Test
   public void commentTest(){
-    List<Blog> blog = sqlSession.selectList("org.apache.ibatis.test.mapper.BlogMapper.selectCommentById2",1);
+    List<Blog> blog = sqlSession.selectList("org.apache.ibatis.test.mapper.BlogMapper.selectCommentById",1);
     System.out.println(blog);
   }
 

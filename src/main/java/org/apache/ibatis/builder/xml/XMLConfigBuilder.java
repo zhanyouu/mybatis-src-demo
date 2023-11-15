@@ -107,6 +107,7 @@ public class XMLConfigBuilder extends BaseBuilder {
       throw new BuilderException("Each XMLConfigBuilder can only be used once.");
     }
     parsed = true;
+    //解析configuration配置
     parseConfiguration(parser.evalNode("/configuration"));
     return configuration;
   }
@@ -128,6 +129,7 @@ public class XMLConfigBuilder extends BaseBuilder {
       environmentsElement(root.evalNode("environments"));
       databaseIdProviderElement(root.evalNode("databaseIdProvider"));
       typeHandlersElement(root.evalNode("typeHandlers"));
+      //解析mappers
       mappersElement(root.evalNode("mappers"));
     } catch (Exception e) {
       throw new BuilderException("Error parsing SQL Mapper Configuration. Cause: " + e, e);

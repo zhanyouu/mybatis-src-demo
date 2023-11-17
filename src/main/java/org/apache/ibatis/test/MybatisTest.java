@@ -8,11 +8,13 @@ import org.apache.ibatis.test.domain.Blog;
 import org.apache.ibatis.test.entity.BlogDO;
 import org.apache.ibatis.test.entity.UserInfoDO;
 import org.apache.ibatis.test.mapper.UserInfoMapper;
+import org.apache.ibatis.test.page.Page;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 public class MybatisTest {
   private static SqlSession sqlSession;
@@ -38,6 +40,16 @@ public class MybatisTest {
   public void BlogTest(){
     Blog blog = sqlSession.selectOne("org.apache.ibatis.test.mapper.BlogMapper.selectBlogById",1);
     System.out.println(blog);
+  }
+
+  @Test
+  public void InterceptTest(){
+    mapper = sqlSession.getMapper(UserInfoMapper.class);
+    Page page = new Page();
+    page.setPageNo(1);
+    page.setPageSize(2);
+    List<UserInfoDO> user = mapper.selectUserByPage(page);
+    System.out.println(user);
   }
 
 }

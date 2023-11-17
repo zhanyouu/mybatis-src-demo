@@ -4,14 +4,14 @@ import lombok.Data;
 
 @Data
 public class Author {
-  private String userName;
+  private String username;
   private String password;
   private String email;
 
   @Override
   public String toString() {
     return "Author{" +
-      "userName='" + userName + '\'' +
+      "username='" + username + '\'' +
       ", password='" + password + '\'' +
       ", email='" + email + '\'' +
       '}';
